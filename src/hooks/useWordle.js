@@ -2,12 +2,13 @@ import { useState } from 'react'
 import Swal from "sweetalert2"
 
 const useWordle = (solution) => {
-  const [turn, setTurn] = useState(0) 
-  const [currentGuess, setCurrentGuess] = useState('')
-  const [guesses, setGuesses] = useState([...Array(6)]) // each guess is an array
+  let savedGame = JSON.parse(localStorage.getItem("savedGame"))
+  const [turn, setTurn] = useState(savedGame !== null? savedGame.turn:0) 
+  const [currentGuess, setCurrentGuess] = useState(savedGame !== null? savedGame.currentGuess:'')
+  const [guesses, setGuesses] = useState(savedGame !== null? savedGame.guesses:[...Array(6)]) // each guess is an array
   const [history, setHistory] = useState([]) // each guess is a string
-  const [isCorrect, setIsCorrect] = useState(false)
-  const [usedKeys, setUsedKeys] = useState({}) // {a: 'grey', b: 'green', c: 'yellow'} etc
+  const [isCorrect, setIsCorrect] = useState(savedGame !== null? savedGame.isCorrect:false)
+  const [usedKeys, setUsedKeys] = useState(savedGame !== null? savedGame.usedKeys:{}) // {a: 'grey', b: 'green', c: 'yellow'} etc
 
   // format a guess into an array of letter objects 
   // e.g. [{key: 'a', color: 'yellow'}]
@@ -71,7 +72,6 @@ const useWordle = (solution) => {
           return
         }
       })
-
       return prevUsedKeys
     })
     setCurrentGuess('')
@@ -164,7 +164,9 @@ const useWordle = (solution) => {
       }
     }
   }
-
+  if(turn < 6) {
+  localStorage.setItem('savedGame',JSON.stringify({turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyup,buttonClick}))
+  }
   return {turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyup,buttonClick}
 }
 

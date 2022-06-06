@@ -4,13 +4,14 @@ import { getFirestore } from 'firebase/firestore'
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBcNoMW4MpnGaz_W8PyoKVtWQRwCi9lSAo",
-  authDomain: "visitor-app-a45ed.firebaseapp.com",
-  projectId: "visitor-app-a45ed",
-  storageBucket: "visitor-app-a45ed.appspot.com",
-  messagingSenderId: "546997772203",
-  appId: "1:546997772203:web:132341d4ad5e26f729bcee",
-  measurementId: "G-Z6KNZ7E67K"
+  apiKey: "AIzaSyB_J3tpEk-HaVB5vy57bfIKlL9QeScYVNU",
+  authDomain: "tellbookstore.firebaseapp.com",
+  databaseURL: "https://tellbookstore.firebaseio.com",
+  projectId: "tellbookstore",
+  storageBucket: "tellbookstore.appspot.com",
+  messagingSenderId: "811081774579",
+  appId: "1:811081774579:web:f6b9d56c73693c7b2b0e86",
+  measurementId: "G-0LD60PJ532"
 };
 
 
