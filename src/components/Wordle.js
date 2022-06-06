@@ -16,11 +16,12 @@ export default function Wordle(props) {
     if (isCorrect) {
           setTimeout(() => 
           Swal.fire({  
-            title: `You won! + ${7-turn} points`,  
+            title: `You won! +${7-turn} points`,  
             text: `You found the correct word after ${turn} tries`,  
             icon: 'success',  
             confirmButtonColor: '#eb3f3f',   
             confirmButtonText: 'Next Challenge',
+            allowOutsideClick:false
           }).then((result)=>{
             if(result.isConfirmed){
               Swal.fire({

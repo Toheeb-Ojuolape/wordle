@@ -3,6 +3,8 @@ body {
   font-size: 1em;
   font-family: "DM Sans", sans-serif;
   margin: 0;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+-webkit-tap-highlight-color: transparent;
 }
 h1 {
   font-size: 1.2em;
@@ -61,18 +63,18 @@ h1 {
 }
 .keypad {
   max-width: 500px;
-  margin: 20px auto;
+  margin: 9px auto;
   text-transform: capitalize;
   cursor: pointer;
 }
 .keypad > div {
-  margin: 5px;
+  margin:4px;
   width: 40px;
-  height: 50px;
+  height: 40px;
   background: #eee;
   display: inline-block;
   border-radius: 6px;
-  line-height: 50px;
+  line-height: 40px;
 }
 
 .keypad > div.enter {
@@ -256,10 +258,8 @@ tr:nth-child(even) {
 }
 
 .button{
-  padding:16px 32px;
-  background-color:rgb(12, 170, 65);
   color:white;
   border:none;
-  border-radius:10px;
-  margin:20px 0px 90px 0px
+  background:white;
+  margin:0px 10px
 }

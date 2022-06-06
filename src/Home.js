@@ -59,9 +59,8 @@ function Home() {
   return (
     
     <div className="App">
-      <h1>Wordle By Tell! Books</h1>
+      <h1>Wordle By Tell! Books <button className="button" onClick={()=>showScoreBoard()}><img alt="scoreboard" src="https://img.icons8.com/external-bearicons-detailed-outline-bearicons/34/undefined/external-podium-reputation-bearicons-detailed-outline-bearicons.png"/></button></h1>
       {solution && <Wordle solution={solution} userData={userData} />}
-      <button className="button" onClick={()=>showScoreBoard()}>View Score Board</button>
       <div id="myModal" className="modal-container">
 
   {/* Scoreboard */}
