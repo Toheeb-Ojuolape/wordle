@@ -68,7 +68,7 @@ h1 {
   cursor: pointer;
 }
 .keypad > div {
-  margin:4px;
+  margin:5px;
   width: 40px;
   height: 40px;
   background: #eee;
@@ -78,13 +78,13 @@ h1 {
 }
 
 .keypad > div.enter {
-  margin: 5px;
-  width: 80px;
-  height: 50px;
+  margin: 4px;
+  width: 60px;
+  height: 40px;
   background: #eee;
   display: inline-block;
   border-radius: 6px;
-  line-height: 50px;
+  line-height: 40px;
 }
 
 
@@ -217,7 +217,17 @@ h1 {
   float: right;
   font-size: 28px;
   font-weight: bold;
+  cursor: pointer;
 }
+
+.closeTutorial {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 
 .close:hover,
 .close:focus {
@@ -234,6 +244,8 @@ h1 {
 }
 
 .modal-body {padding: 2px 16px;}
+
+.inviteBody {padding: 19px 20px;}
 
 .modal-footer {
   padding: 2px 16px;
@@ -261,5 +273,19 @@ tr:nth-child(even) {
   color:white;
   border:none;
   background:white;
-  margin:0px 10px
+  margin:0px 10px;
+  cursor:pointer
+}
+
+.buttonInvite{
+  color:white;
+  border:none;
+  background:white;
+  cursor:pointer
+}
+
+
+
+.spacer {
+  flex: 0.5;
 }

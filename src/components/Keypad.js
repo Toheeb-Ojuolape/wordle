@@ -54,7 +54,7 @@ export default function Keypad(props) {
         const color = props.usedKeys[l.key]
         return (
           <div  onClick={()=>tryMe(l.key)} key={l.key} className={l.key==="Backspace" || l.key ==="Enter" ? "enter":color}>{l.key === "Backspace" ? '⌫':l.key}</div>
-        )
+          )
       })}
     </div>
   )
