@@ -4,6 +4,7 @@ import Scoreboard from './components/Scoreboard';
 import {db} from "./db"
 import {doc,getDoc} from "firebase/firestore"
 import countryFlagEmoji from "country-flag-emoji";
+import Swal from 'sweetalert2';
 
 function Home() {
     const [userData,setUserData] = useState({})
@@ -47,6 +48,123 @@ function Home() {
       getDoc(userRef).then(doc=>{
         setUserData(doc.data())
       })
+    },[])
+
+    useEffect(()=>{
+      if(localStorage.getItem("country") === null)
+      {
+        const { value: country } = Swal.fire({
+          title: 'Select Your Country',
+          input: 'select',
+          inputOptions: {
+            'Flags': {
+               AO:"🇦🇴",
+               BF:"🇧🇮",
+               BI:"🇧🇯",
+               BJ:"🇧🇬",
+               BW:"🇧🇼",
+              CM:"🇨🇲",
+                CA:"🇨🇦",
+                CV:"🇨🇻",
+                CF:"🇨🇫",
+                TD:"🇹🇩",
+                CN:"🇨🇳",
+                CG:"🇨🇬",
+                CR:"🇨🇷",
+                CI:"🇨🇮",
+                DJ:"🇩🇯",
+                EG:"🇪🇬",
+                GQ:"🇬🇶",
+                ET:"🇪🇹",
+                GA:"🇬🇦",
+                GM:"🇬🇲",
+                GH:"🇬🇭",
+                GN:"🇬🇳",
+                GW:"🇬🇼",
+                IN:"🇮🇳",
+                JM:"🇯🇲",
+                KE:"🇰🇪",
+                LB:"🇱🇧",
+                LS:"🇱🇸",
+                LR:"🇱🇷",
+                LY:"🇱🇾",
+                MG:"🇲🇬",
+                MW:"🇲🇼",
+                MV:"🇲🇻",
+                ML:"🇲🇱",
+                MR:"🇲🇷",
+                MU:"🇲🇺",
+                MA:"🇲🇦",
+                MZ:"🇲🇿",
+                NA:"🇳🇦",
+                NE:"🇳🇪",
+                NG:"🇳🇬",
+                RW:"🇷🇼",
+                SN:"🇸🇳",
+                SC:"🇸🇨",
+                SL:"🇸🇱",
+                SO:"🇸🇴",
+                ZA:"🇿🇦",
+                SS:"🇸🇸",
+                SD:"🇸🇩",
+                SZ:"🇸🇿",
+                TZ:"🇹🇿",
+                TG:"🇹🇬",
+                TN:"🇹🇳",
+                UG:"🇺🇬",
+                AE:"🇦🇪",
+                GB:"🇬🇧",
+                ZM:"🇿🇲",
+                ZW:"🇿🇼",
+                
+
+            },
+          },
+          inputPlaceholder: 'Select Your Country',
+          confirmButtonColor:"#f66c1f",
+          showCancelButton: false,
+          inputValidator: (value) => {
+            return new Promise((resolve) => {
+                localStorage.setItem("country",countryFlagEmoji.get(value).emoji)
+                resolve()
+            })
+          }
+        })
+        
+        if (country) {
+          Swal.fire(`You selected: ${country}`)
+        }
+      }
+    },[])
+
+
+    useEffect(()=>{
+     if(sessionStorage.getItem("firstTime")===null){
+      let timerInterval
+Swal.fire({
+  title: 'Fetching Game, please wait',
+  timer: 1300,
+  timerProgressBar: true,
+  confirmButtonColor:"#f66c1f",
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    sessionStorage.setItem("firstTime",true)
+    console.log('I was closed by the timer')
+  }
+})
+     }
+     
     },[])
 
     function showScoreBoard(){
@@ -114,7 +232,7 @@ function Home() {
       <span onClick={closeTutorial} className="closeTutorial">&times;</span>
     </div>
     <div className="modal-body">
-      <img style={{width:"60%",objectFit:"cover"}} src="https://i.ibb.co/82yFPdY/Capture.png" alt="instructions" />
+      <img style={{width:"100%",height:"200%",objectFit:"cover"}} src="https://i.ibb.co/82yFPdY/Capture.png" alt="instructions" />
     </div>
   </div>
 </div>

@@ -19,7 +19,7 @@ export default function Wordle(props) {
             title: `You won! +${7-turn} points`,  
             text: `You found the correct word after ${turn} tries`,  
             icon: 'success',  
-            confirmButtonColor: '#eb3f3f',   
+            confirmButtonColor:"#f66c1f",  
             confirmButtonText: 'Next Challenge',
             allowOutsideClick:false
           }).then((result)=>{
@@ -36,7 +36,7 @@ export default function Wordle(props) {
                   method:"POST",
                   url:"https://wordleapp.herokuapp.com/addscore",
                   data:{
-                    username:window.location.pathname.slice(1),
+                    username:window.location.pathname.slice(1)+localStorage.getItem("country"),
                     score:7-turn
                   }
                 }).then(()=>{
@@ -53,7 +53,7 @@ export default function Wordle(props) {
                 method:"POST",
                 url:"https://wordleapp.herokuapp.com/addscore",
                 data:{
-                  username:window.location.pathname.slice(1),
+                  username:window.location.pathname.slice(1)+localStorage.getItem("country"),
                   score:7-turn
                 }
               }).then(()=>{
@@ -90,7 +90,7 @@ export default function Wordle(props) {
             title: "You have used all your free attempts",
             icon:"error",
             text:"To continue playing, you need to pay for a Tell! Books subscription",
-            confirmButtonColor: '#eb3f3f',
+            confirmButtonColor:"#f66c1f",
             confirmButtonText: 'Go to subscription',
           }).then((result)=>{
             if(result.isConfirmed){
