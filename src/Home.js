@@ -5,10 +5,10 @@ import {db} from "./db"
 import {doc,getDoc} from "firebase/firestore"
 import countryFlagEmoji from "country-flag-emoji";
 import Swal from 'sweetalert2';
+import Instructions from "./assets/Instructions.png";
 
 function Home() {
     const [userData,setUserData] = useState({})
-    const [country,setCountry] = useState("")
     // Get the button that opens the modal
     // Get the <span> element that closes the modal
     var modal = document.getElementById("myModal");
@@ -27,7 +27,6 @@ function Home() {
     const [solution, setSolution] = useState(null)
     const savedSolution  = localStorage.getItem("solution")
     useEffect(() => {
-      setCountry(countryFlagEmoji.get("NG").emoji)
       fetch('https://wordleapp.herokuapp.com/solutions')
         .then(res => res.json())
         .then(json => {
@@ -41,7 +40,7 @@ function Home() {
           setSolution(savedSolution)
           }
         })
-    }, [setSolution,savedSolution,setCountry],)
+    }, [setSolution,savedSolution],)
 
     useEffect(()=>{
       const userRef = doc(db,"users",window.location.pathname.slice(1))
@@ -161,6 +160,90 @@ Swal.fire({
   if (result.dismiss === Swal.DismissReason.timer) {
     sessionStorage.setItem("firstTime",true)
     console.log('I was closed by the timer')
+    if(localStorage.getItem("country") === null)
+      {
+        const { value: country } = Swal.fire({
+          title: 'Select Your Country',
+          input: 'select',
+          inputOptions: {
+            'Flags': {
+               AO:"🇦🇴",
+               BF:"🇧🇮",
+               BI:"🇧🇯",
+               BJ:"🇧🇬",
+               BW:"🇧🇼",
+              CM:"🇨🇲",
+                CA:"🇨🇦",
+                CV:"🇨🇻",
+                CF:"🇨🇫",
+                TD:"🇹🇩",
+                CN:"🇨🇳",
+                CG:"🇨🇬",
+                CR:"🇨🇷",
+                CI:"🇨🇮",
+                DJ:"🇩🇯",
+                EG:"🇪🇬",
+                GQ:"🇬🇶",
+                ET:"🇪🇹",
+                GA:"🇬🇦",
+                GM:"🇬🇲",
+                GH:"🇬🇭",
+                GN:"🇬🇳",
+                GW:"🇬🇼",
+                IN:"🇮🇳",
+                JM:"🇯🇲",
+                KE:"🇰🇪",
+                LB:"🇱🇧",
+                LS:"🇱🇸",
+                LR:"🇱🇷",
+                LY:"🇱🇾",
+                MG:"🇲🇬",
+                MW:"🇲🇼",
+                MV:"🇲🇻",
+                ML:"🇲🇱",
+                MR:"🇲🇷",
+                MU:"🇲🇺",
+                MA:"🇲🇦",
+                MZ:"🇲🇿",
+                NA:"🇳🇦",
+                NE:"🇳🇪",
+                NG:"🇳🇬",
+                RW:"🇷🇼",
+                SN:"🇸🇳",
+                SC:"🇸🇨",
+                SL:"🇸🇱",
+                SO:"🇸🇴",
+                ZA:"🇿🇦",
+                SS:"🇸🇸",
+                SD:"🇸🇩",
+                SZ:"🇸🇿",
+                TZ:"🇹🇿",
+                TG:"🇹🇬",
+                TN:"🇹🇳",
+                UG:"🇺🇬",
+                AE:"🇦🇪",
+                GB:"🇬🇧",
+                ZM:"🇿🇲",
+                ZW:"🇿🇼",
+                
+
+            },
+          },
+          inputPlaceholder: 'Select Your Country',
+          confirmButtonColor:"#f66c1f",
+          showCancelButton: false,
+          inputValidator: (value) => {
+            return new Promise((resolve) => {
+                localStorage.setItem("country",countryFlagEmoji.get(value).emoji)
+                resolve()
+            })
+          }
+        })
+        
+        if (country) {
+          Swal.fire(`You selected: ${country}`)
+        }
+      }
   }
 })
      }
@@ -203,12 +286,16 @@ Swal.fire({
       window.open(`https://facebook.com/sharer/sharer.php?description=Let%20us%20play%20Wordle%20together%20on%20Tell!%20Books&u=https://books.tell.africa/signup`)
     }
 
+    function goBack(){
+      window.location.href="https://books.tell.africa/start/wordle"
+    }
+
     
 
   return (
     
     <div className="App">
-      <h1><button className="button" onClick={()=>showTutorial()} style={{fontSize:"14px"}}><img alt="tutorial" src="https://img.icons8.com/ios/20/undefined/info--v1.png"/></button> Wordle By Tell! Books <button className="button" onClick={()=>showScoreBoard()}><img alt="scoreboard" src="https://img.icons8.com/external-bearicons-detailed-outline-bearicons/24/undefined/external-podium-reputation-bearicons-detailed-outline-bearicons.png"/></button> <button className="buttonInvite" onClick={()=>showInvite()}><img alt="invite" src="https://img.icons8.com/external-thin-kawalan-studio/24/undefined/external-user-plus-users-thin-kawalan-studio.png"/></button></h1>
+      <div className='heading'><button className="floatLeft button" onClick={()=>goBack()}><img alt="backButton" src="https://img.icons8.com/ios-glyphs/12/undefined/chevron-left.png"/><span style={{color:"black",margin:"6px 0px"}}>Back</span></button><button className="button" onClick={()=>showTutorial()} style={{fontSize:"14px"}}><img alt="tutorial" src="https://img.icons8.com/ios/20/undefined/info--v1.png"/></button> <button className="button" onClick={()=>showScoreBoard()}><img alt="scoreboard" src="https://img.icons8.com/external-bearicons-detailed-outline-bearicons/24/undefined/external-podium-reputation-bearicons-detailed-outline-bearicons.png"/></button> <button className="buttonInvite" onClick={()=>showInvite()}><img alt="invite" src="https://img.icons8.com/external-thin-kawalan-studio/24/undefined/external-user-plus-users-thin-kawalan-studio.png"/></button></div>
       {solution && <Wordle solution={solution} userData={userData} />}
       <div id="myModal" className="modal-container">
 
@@ -232,7 +319,7 @@ Swal.fire({
       <span onClick={closeTutorial} className="closeTutorial">&times;</span>
     </div>
     <div className="modal-body">
-      <img style={{width:"100%",height:"200%",objectFit:"cover"}} src="https://i.ibb.co/82yFPdY/Capture.png" alt="instructions" />
+      <img style={{width:"100%",height:"200%",objectFit:"cover"}} src={Instructions} alt="instructions" />
     </div>
   </div>
 </div>
@@ -244,7 +331,7 @@ Swal.fire({
       <span onClick={closeInvite} className="closeTutorial">&times;</span>
     </div>
     <div className="inviteBody">
-      <p>Invite your friends (and foes) to play Wordle on Tell! Books {country}</p>
+      <p>Invite your friends (and foes) to play Wordle on Tell! Books</p>
     <button onClick={()=>shareWhatsApp()} className="button"><img alt="whatsAPP" src="https://img.icons8.com/color/50/undefined/whatsapp--v1.png"/></button>
     <button onClick={()=>shareTwitter()} className="button"><img alt="twitter" src="https://img.icons8.com/color/50/undefined/twitter-circled--v1.png"/></button>
     <button onClick={()=>shareFacebook()} className="button"><img alt="facebook" src="https://img.icons8.com/color/50/undefined/facebook-new.png"/></button>

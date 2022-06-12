@@ -6,12 +6,13 @@ body {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 -webkit-tap-highlight-color: transparent;
 }
-h1 {
+.heading {
   font-size: 1.2em;
   padding: 20px 0;
   border-bottom: 1px solid #eee;
-  margin: 0 0 30px 0;
+  margin: 0 auto 30px auto;
   color: #333;
+  width:80%;
 }
 /* rows */
 .row {
@@ -30,6 +31,7 @@ h1 {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 2.5em;
+  border-radius: 50%;
 }
 .row > div.green {
   --background: #6aaa64;
@@ -288,4 +290,9 @@ tr:nth-child(even) {
 
 .spacer {
   flex: 0.5;
+}
+
+.floatLeft{
+  margin:10px 0px;
+  float:left;
 }
