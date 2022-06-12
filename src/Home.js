@@ -142,7 +142,7 @@ function Home() {
       let timerInterval
 Swal.fire({
   title: 'Fetching Game, please wait',
-  timer: 1300,
+  timer: 2000,
   timerProgressBar: true,
   confirmButtonColor:"#f66c1f",
   didOpen: () => {
