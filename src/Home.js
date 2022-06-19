@@ -286,9 +286,7 @@ Swal.fire({
       window.open(`https://facebook.com/sharer/sharer.php?description=Let%20us%20play%20Wordle%20together%20on%20Tell!%20Books&u=https://books.tell.africa/signup`)
     }
 
-    function goBack(){
-      window.location.href="https://books.tell.africa/start/wordle"
-    }
+ 
 
     
 
