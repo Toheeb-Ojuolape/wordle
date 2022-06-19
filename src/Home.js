@@ -295,7 +295,7 @@ Swal.fire({
   return (
     
     <div className="App">
-      <div className='heading'><button className="floatLeft button" onClick={()=>goBack()}><img alt="backButton" src="https://img.icons8.com/ios-glyphs/12/undefined/chevron-left.png"/><span style={{color:"black",margin:"6px 0px"}}>Back</span></button><button className="button" onClick={()=>showTutorial()} style={{fontSize:"14px"}}><img alt="tutorial" src="https://img.icons8.com/ios/20/undefined/info--v1.png"/></button> <button className="button" onClick={()=>showScoreBoard()}><img alt="scoreboard" src="https://img.icons8.com/external-bearicons-detailed-outline-bearicons/24/undefined/external-podium-reputation-bearicons-detailed-outline-bearicons.png"/></button> <button className="buttonInvite" onClick={()=>showInvite()}><img alt="invite" src="https://img.icons8.com/external-thin-kawalan-studio/24/undefined/external-user-plus-users-thin-kawalan-studio.png"/></button></div>
+      <div className='heading'><button className="button" onClick={()=>showTutorial()} style={{fontSize:"14px"}}><img alt="tutorial" src="https://img.icons8.com/ios/20/undefined/info--v1.png"/></button> <button className="button" onClick={()=>showScoreBoard()}><img alt="scoreboard" src="https://img.icons8.com/external-bearicons-detailed-outline-bearicons/24/undefined/external-podium-reputation-bearicons-detailed-outline-bearicons.png"/></button> <button className="buttonInvite" onClick={()=>showInvite()}><img alt="invite" src="https://img.icons8.com/external-thin-kawalan-studio/24/undefined/external-user-plus-users-thin-kawalan-studio.png"/></button></div>
       {solution && <Wordle solution={solution} userData={userData} />}
       <div id="myModal" className="modal-container">
 
