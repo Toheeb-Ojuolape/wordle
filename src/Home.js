@@ -34,7 +34,7 @@ function Home() {
           const randomSolution = json[Math.floor(Math.random()*json.length)]
           if(savedSolution == null){
           setSolution(randomSolution.word)
-          localStorage.setItem('solution', "solve")
+          localStorage.setItem('solution', randomSolution.word)
           }
           else{
           setSolution(savedSolution)
